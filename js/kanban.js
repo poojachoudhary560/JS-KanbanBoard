@@ -20,14 +20,15 @@ const create_item = () => {
   item.classList.add("item");
   item.id = "item-"+order;
   item.draggable = true;
-  item.addEventListener('dragStart', (event) => {
+  item.addEventListener('dragstart', (event) => {
     return event.DataTransfer.setData('text', event.target.id);
   });
   item.addEventListener('dragend', (event) => {
     return event.DataTransfer.clearData();
   });
   let input = document.createElement("input");
-  item.append(input);
+  item.appendChild(input);
+
   let save_btn = document.createElement("button");
   save_btn.innerHTML = "Save";
   save_btn.addEventListener('click', () => {
@@ -41,7 +42,7 @@ const create_item = () => {
     }
 
   });
-  item.append(save_btn);
+  item.appendChild(save_btn);
   return item;
 
 };
@@ -50,7 +51,7 @@ document.querySelectorAll('.drop').forEach(element => {
   element.addEventListener('drop', (event) => {
     event.preventDefault();
     const id = event.DataTransfer.getData('text');
-    document.getElementById('id').append(event.target);
+    document.getElementById('id').appendChild(event.target);
   });
   element.addEventListener('dragover', (event) => {
     event.preventDefault();
